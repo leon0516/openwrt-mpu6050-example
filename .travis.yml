@@ -12,7 +12,16 @@ env:
   - PACKAGE=mpu6050
   - USER=leon0516
   - REPO=openwrt-mpu6050-example
+  - secure: "dNTl6qLicvw659/aZlFqbUg9mBQch6iMyMBWmywzRSOxM/CkmDqBqwt+j2Acx5UwqbarOtmsQytsl1r5XgexSjzgt/+diEp2XRoHtDUN6kCEJkaGoZ9oalVFjdsew+lKJPaGbp+pixAaLmpwE26EpVaWdIvh2rp7m0Y3cA6dKD+PRQMJz1MzbJ6/mT1anwulj7hvMxWoHI54PLaoQZQWAJOz+lrUCxX8+4+bSXafmzQOhNwGSESFXket5Zm5W1+F02auIszWt8vr0iZuS8gh5xD+sRKvLAkYUT79xt5bmk7CEZsxyRxg/OdzEa4JLjkOhCqjJQXc9yA1qamBh62msV5dhtEvQKuaXp466x8QAeLZ3kNLXTvntgdai/veAq5vTcz9Vfr4vCYF8YpsISo7CFFzbSldwfcCl8CBmliWpfCUUJoE5HvW22+EyFu8laOZ68ZfAAzHxRX1Qu2/FjRfO7chSEQ/wZC9WhwFMEN7KH6fE26LcenTSVHim2AD2M08D1D778tozSVURuhvMH60poaC6sqJgoK4ZkwFg9fUkLWk/fuI5bEMXoQozXoGvj2jA6RcZVs0z+Hl/Vwi5kHS1743H5FOxxUnW2Ohic1pTe6dttAOI7uvhuVtmXImrBD6w9xOGNrZxXQlhWLj2Y7oFGhC/cVDEkyJIxQzw9Onkr0="
+    # Go to GitHub.com -> Settings -> Applications -> Personal Access Tokens 
+    # —> Create new token, and copy it to your clipboard
+    # travis encrypt GH_Token=123459... -r username/reponame
+    # Paste here
   - secure: "ZDeulNlhgLxey69RZTQLyK1vSR+om5bwKXYAGJu1Ay7ryDn2SKfKPSs+eXVnu7DhioPZMB/6SUtXkJnQJmn9BvwdDuxR+XWYCO6ysIQkK8eKoiynP6p4w4ALaYDkfUai5FDpQV+vApGlCOvid9iWVsjWydpD03oO4dexWqpFr6Cqv2DR4kMuVf1yKPOX8PS3pfmLir7PpIWhnGKra8+aw+P65SD7x3Nn9MKLRLp53LmbvHEOA3CJIoTXxsriB8krroKj+ZJebnD0xS1/sqJu3Scc/K5Hm/BszFmA7i649x6YgK05RtkfvNNZQb6cWhDT1DT2qpLNVM8RBtJBM0nDgHJe9pS9jQTGeSM+tP418/wc3awh339kFzPyTA0rVdh7LdwoYwv7xvB8/BNPf6x4Yaial0K9XwxRuuQwtLQTsSdW/EI/Ub+7eLMlYQNSQ2pE3qFczw3Y50/5aWd6P/8KLDxxbvchly2x/9jT8uhHR7IZXvkykdZE102Wn7NRO/d9Py37/47mTvcI/g4IpsWuCUuCScmSurrflvBJMi47a/UXu8vcPQ54VyibX0/wxadYGLPVEMQHRBuh+sIvstwNPDHfyfhU1akPBTrUeSJdcrgzQlbrUXlyGIH3lF7VajbuiJQydjzygklZpqWz08/B7qqyRqAkrlkh980T6QYR4ao="
+    # Go to GitHub.com -> Settings -> Applications -> Personal Access Tokens 
+    # —> Create new token, and copy it to your clipboard
+    # travis encrypt TOKEN=123459... -r username/reponame
+    # Paste here
   matrix:
   - SDK_URL=https://downloads.openwrt.org/chaos_calmer/15.05/ar71xx/generic/OpenWrt-SDK-15.05-ar71xx-generic_gcc-4.8-linaro_uClibc-0.9.33.2.Linux-x86_64.tar.bz2
   - SDK_URL=https://downloads.openwrt.org/chaos_calmer/15.05/ramips/mt7620/OpenWrt-SDK-15.05-ramips-mt7620_gcc-4.8-linaro_uClibc-0.9.33.2.Linux-x86_64.tar.bz2
@@ -52,6 +61,10 @@ deploy:
   provider: releases
   api_key:
     secure: "bUcfHyjQDKvGbVKnbdqfkG/kCMpsU+VuoZxm7+9ckB+lhpHFLaN/xIKmnikNfcEpEbq8wCnnbbW4TOlF7sUVOCcKQ9mazgtZamcO+ZM09ig73rci2v7JYK7NLLJaxd1AWTWi8S6GSFgAIqucWxKdIGTONnTSkGzGjljFPtVBCLY6KCXeQHukrDjVMCBMp+k+rNYHP58OmjpJVrKG9kskF3BaRmkqkFrVDUeL1MCPDfMwprCpmImxW07xW7aWSGIs0CGttfbkVC+1vz5bJsFvqcF1qHlkmfTImumsc8DtDvGvdhb08xOb/DYueT43VFa2UHG2xglMLcF1/+4PqCC9eugoq0NgN16xHXG8HhAMKjBCr6tvcxhkLeYiYTGweZsfLfLQdcGirSe8TDhr1daedbazOPNiqGzy0aypGjCFPeyHxBzuPHAJixRmwVI+jZzs8a4vG+3GI5ZNf4U0uH08bhAHqvgILULJ0QliZc74h6+EYUYmLbf4M8MzRspLGh3GFh1+QUvm2+UhHWk5LuLGgi68X5ISUJQrEL+wm35m3o9MDnP47VgnELb+lGUx0bGOeuT0ywEQCROPNLso844lHXK/zVZ5HILo+RRMIE7eAcUCBPZa2fbil0SYhKhHZMQ+MOfXKIrO/djpW+cjv5k6sYeATi1R4UqHVFZqMvim64c="
+      # Go to GitHub.com -> Settings -> Applications -> Personal Access Tokens 
+      # —> Create new token, and copy it to your clipboard
+      # travis-encrypt -r username/reponame 123459...
+      # Paste here
   skip_cleanup: true
   file_glob: true
   file: "$TRAVIS_BUILD_DIR/*.ipk"
