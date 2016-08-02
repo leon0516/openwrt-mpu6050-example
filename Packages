@@ -22,6 +22,22 @@ License: GPLv2
 LicenseFiles: LICENSE
 Section: utils
 Maintainer: Leon <Leon860516@gmail.com>
+Architecture: brcm63xx
+Installed-Size: 18613
+Filename: mpu6050_1_brcm63xx.ipk
+Size: 19390
+MD5Sum: e0785155400c1a2ba76f86344b1bc054
+SHA256sum: 205d2fd7ea1a1a9be61df4333a985dda9c8f2f70451ee57ef7d0558491e142b5
+Description:  a application to read data from MPU6050
+
+Package: mpu6050
+Version: 1
+Depends: libc, libstdcpp
+Source: package/mpu6050
+License: GPLv2
+LicenseFiles: LICENSE
+Section: utils
+Maintainer: Leon <Leon860516@gmail.com>
 Architecture: ramips_24kec
 Installed-Size: 18589
 Filename: mpu6050_1_ramips_24kec.ipk
