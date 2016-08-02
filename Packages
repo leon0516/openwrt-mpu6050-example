@@ -23,10 +23,10 @@ LicenseFiles: LICENSE
 Section: utils
 Maintainer: Leon <Leon860516@gmail.com>
 Architecture: ramips_24kec
-Installed-Size: 18588
+Installed-Size: 18589
 Filename: mpu6050_1_ramips_24kec.ipk
-Size: 19374
-MD5Sum: 589fa3be05766f8041ded7e82cf1628b
-SHA256sum: 47fe8fd342fdfb04b4afc821b2a5738fe8e177b97f88a91c92d23106bd447df0
+Size: 19378
+MD5Sum: 8a74aa3aadac1f56d59f477b15b8092f
+SHA256sum: 64bf81a6c92931d9b2f8e050ab47c54eb25197736b67add0712d1a5279ec46a8
 Description:  a application to read data from MPU6050
 
