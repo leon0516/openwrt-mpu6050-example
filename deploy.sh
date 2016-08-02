@@ -20,10 +20,11 @@
 
 cd /tmp/
 
-git clone https://${TOKEN}@github.com/${USER}/${REPO}.git --branch gh-pages \
---single-branch gh-pages > /dev/null 2>&1 || exit 1 # so that the key does not leak to the logs in case of errors
-
-cd gh-pages || exit 1
+git clone https://${TOKEN}@github.com/${USER}/${REPO}.git
+# --branch gh-pages \
+#--single-branch gh-pages > /dev/null 2>&1 || exit 1 # so that the key does not leak to the logs in case of errors
+git checkout --orphan gh-pages
+git rm -fr .
 git config user.name "Travis CI"
 git config user.email "travis@noreply"
 
@@ -56,6 +57,7 @@ git add -A
 #git pull
 git commit -a -m "Deploy Travis build $TRAVIS_BUILD_NUMBER to gh-pages"
 #git push -fq origin gh-pages:gh-pages > /dev/null 2>&1 || exit 1
-git push -fq origin gh-pages > /dev/null 2>&1 || exit 1 # so that the key does not leak to the logs in case of errors
+#git push -fq origin gh-pages > /dev/null 2>&1 || exit 1 # so that the key does not leak to the logs in case of errors
+git push origin gh-pages:gh-pages
 echo -e "Uploaded files to gh-pages\n"
 cd -
