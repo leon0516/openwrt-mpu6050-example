@@ -103,10 +103,10 @@ LicenseFiles: LICENSE
 Section: utils
 Maintainer: Leon <Leon860516@gmail.com>
 Architecture: x86
-Installed-Size: 17296
+Installed-Size: 17295
 Filename: mpu6050_1_x86.ipk
-Size: 18054
-MD5Sum: bdb1c9cb70e8603a64b7d6315173f7ba
-SHA256sum: b391399196fe328223c61af835beab84475e77cd7b7bdc03cfe1c0edde56a80f
+Size: 18044
+MD5Sum: f70e9e9cc879d7d1ea2c8f589256b08e
+SHA256sum: 5f2f3b5364c58a67515b2908928714fc4df4af28eb9438e83e89c8355d0256d4
 Description:  a application to read data from MPU6050
 
