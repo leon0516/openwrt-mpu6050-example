@@ -1,0 +1,54 @@
+sudo: false
+cache:
+  bundler: true
+  directories:
+  - cache/
+notifications:
+  email: false
+language: c
+compiler: gcc
+env:
+  global:
+  - PACKAGE=mpu6050
+  - USER=leon0516
+  - REPO=openwrt-mpu6050-example
+  - secure: FkyJ8kdvYP5JucY3jh8iRLYymJaUkk3UySNeag2LKuExtgfjPVBrI/UlELDxbv/CxKYJJm9Ws/X6qfZjovCFdsQXEqZbmmnWtv4j7/CRVfolMqmIvqhhl/wMHdNj9QuXKZq5nIkgNDTXgFBWnRA7dDzF2QGmJBLfWQ+ZANgci7liEZtk61c5+cFrMqLuFhgUEXarwuAb4vrlB0F7dVC10NUuQCUC/wcHgrn1Z5bHIodS8NSXFPPLxUrIswdEVTvdjT5N4dSM3BndDO4ikpl4SRGdY4+0tmPFktYNvvoIfrAc+c8YsMB1l/n21LEYb1YR+Xxx6sCEp0PImX3od5k3wwwjr2MaDV99kZlKMZQ0+dN+d+dZCoJfJ1QAEU1PCuzwZq5NwfpRv1tlySlCWInzYlBziBjM89PfASAhcU2u9fRYlMJuLAOVP6Glr9f5rPoIVUQF8obLV5IKRvifPxm60uglFeZflOlEjirJiQbdAQMaBGEM+m4Gb3IhK9g9UlGc5qNQX+3HFY32a4dX5ykDfUhvcjKfvXoIA4A78aR5jEqKhAC8tZ3EpkSjOsbOsWVHpucQxAEa9NPVjbqzfmbxY4+Y7/3UNh91skOoYJo9J7N50EU3I98uSD100j9lxCNm22g7REKVwH/U0GFPL4p5cfQMtlAVrZ5rporsdWf6U10=
+  - secure: XobTiO8/VlA2L+DtnNisx+u3DF0vdHa1V72c1S09ULFWxfIGZqbL1NR1dsAeleI0UfcAcHU5tKvjvwbTjr6aIOH8cgkCyEzAV/f20GKx23zozWSD7jlfVKMOF5gh2AUMR8+BSZj/LYlwCRuYl/DWW4wBPc+QenpTyKLjmLNkeiiBGRluxpnX3PVmgXP/58VVebDVshyEgTvipMmHpdqh9cEr4/QIQQXBFnamvio9syCAV6Xyla7ndxjxKmb8l3jXUrF+kBBQ3ezVAHwOG4TsGOz1wn0x597HGyevK8ROxkuEur0Y/gUfZc504+lXTyaUYpanXi9zDrNVve4VJ2elCHFiWd8xXqBhs9gkMq6gE4jpx146iK/3IM229kf+nlUUnGSdiAiIYLO9r5AAcZE62VrvU6EkGHIWcmT+dZQrk8EyAuh7ahYuS2RRd/33N/QYXGL//BJaf1B4WO5nA71FSnsnQJX2Td+IWiG3Gc5rx2wIelLUTcBvXXrkTPYudFDurbDzgqXdOlXZDvj7+59OR5mPboh350aX8D9Lrh7fDmanYXNr9avs2wkqTOp1uKPc7Wf8X8W397/wr5qKPfclo568MCEV23OLdRKzJfFER13Ui+QchYRaM6j9Gpay9hgGLIwrgjveI5N46Vrb3rOh0SitgrXEfe2vuezZsB6WqWY=
+  matrix:
+  - SDK_URL=https://downloads.openwrt.org/chaos_calmer/15.05/ar71xx/generic/OpenWrt-SDK-15.05-ar71xx-generic_gcc-4.8-linaro_uClibc-0.9.33.2.Linux-x86_64.tar.bz2
+  - SDK_URL=https://downloads.openwrt.org/chaos_calmer/15.05/ramips/mt7620/OpenWrt-SDK-15.05-ramips-mt7620_gcc-4.8-linaro_uClibc-0.9.33.2.Linux-x86_64.tar.bz2
+install:
+- mkdir -p $TRAVIS_BUILD_DIR/local ; cd $TRAVIS_BUILD_DIR/local
+- wget "http://us.archive.ubuntu.com/ubuntu/pool/main/c/ccache/ccache_3.1.6-1_amd64.deb"
+- dpkg -x *.deb .
+- mkdir -p $TRAVIS_BUILD_DIR/cache ; cd $TRAVIS_BUILD_DIR/cache
+- wget -c $SDK_URL
+- mkdir -p $TRAVIS_BUILD_DIR/sdk ; cd $TRAVIS_BUILD_DIR/sdk
+- export FILE=$TRAVIS_BUILD_DIR/cache/$(basename $SDK_URL)
+- file $FILE
+- tar xjf $FILE
+- cd $TRAVIS_BUILD_DIR/sdk/OpenWrt-SDK-*
+- mkdir package/$PACKAGE
+- ln -s $TRAVIS_BUILD_DIR/Makefile package/$PACKAGE/
+- ln -s $TRAVIS_BUILD_DIR/src package/$PACKAGE/
+script:
+- export PATH=$TRAVIS_BUILD_DIR/local/usr/bin:$PATH
+- cd $TRAVIS_BUILD_DIR/sdk/OpenWrt-SDK-*
+- "./scripts/feeds update packages >/dev/null"
+- make V=s
+- find $TRAVIS_BUILD_DIR/sdk/OpenWrt-SDK-*/bin/
+- find . -name *.ipk -exec cp {} $TRAVIS_BUILD_DIR \;
+- cd $TRAVIS_BUILD_DIR/
+- chmod a+x $TRAVIS_BUILD_DIR/deploy.sh
+after_success: "$TRAVIS_BUILD_DIR/deploy.sh"
+before_deploy: git fetch --tags
+deploy:
+  provider: releases
+  api_key:
+    secure: "tSbftUQfhz5a31uGVQ0kLOQtu9qUiaRzvraTLvcehxVVW2oLE/D3fBFRDBQ0sXN6vkUEB90B6zFrBU3k7zkk+k6mFqv/+U2lDzkkhxNfkxwYlLsLqRl/4V9wH6GG7wo6Y3p7Q8wX/n5LHYQwADDuwq+LX5tlomIOr8utaze5g/hPKxSiytNQW+RE87N9ZdW9Bf+9E8mAQnL5UTa9WegcfOgfJZMydtX2gU9CjUe3n4s5kIRj1qH03bVN9APd2iQjIQi2nIpHvpv5m69H/ZJobrVKnlmEc9iLC2phTqfZBVG5Nj/0myCd3m3an8tz9RH7nG56MXRyKYY8vKw7p+o5ZNFeBDOmuT7ieL24fqxF+0HYAH23h+x/iWWJfXdpp99YNhkre/E52jkzff+Jrw/o6c8GwIlmsPapffdLjH55Mf225r23lSY7U3WZrzHMqzQW41zEJ8duINP3p8nyv3yu/bKgkIpyq2GOwJtFbnwus48AEfGznhIpnytZT+JnUUhAwFLZL8IB+4foG2D4ZJBUskipzgUVx0RiZJf6E8oDP0rHXUvbeS0A7/cUUEwkk0WbIjEOYBfG35JeyhvS/A87IKJPUBXSg6tvbfJUJ6zkdpog/EbhX6p8nBb3P3ConqxQCLE7pQA2Hjt5k7YwshsWjVXff/8qWJmKgGUDA7LpH5A="
+  skip_cleanup: true
+  file_glob: true
+  file: "$TRAVIS_BUILD_DIR/*.ipk"
+  on:
+    tags: true
+    all_branches: true
