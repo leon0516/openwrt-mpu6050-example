@@ -36,7 +36,7 @@ script:
 - "./scripts/feeds update packages >/dev/null"
 - make V=s
 - find $TRAVIS_BUILD_DIR/sdk/OpenWrt-SDK-*/bin/
-- find $TRAVIS_BUILD_DIR -name '*libstdc*' #查找libstdcpp
+#- find $TRAVIS_BUILD_DIR -name '*libstdc*' #查找libstdcpp
 - find . -name *.ipk -exec cp {} $TRAVIS_BUILD_DIR \;
 - cd $TRAVIS_BUILD_DIR/
 - chmod a+x $TRAVIS_BUILD_DIR/deploy.sh
