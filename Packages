@@ -78,3 +78,19 @@ MD5Sum: 8a74aa3aadac1f56d59f477b15b8092f
 SHA256sum: 64bf81a6c92931d9b2f8e050ab47c54eb25197736b67add0712d1a5279ec46a8
 Description:  a application to read data from MPU6050
 
+Package: mpu6050
+Version: 1
+Depends: libc, libstdcpp
+Source: package/mpu6050
+License: GPLv2
+LicenseFiles: LICENSE
+Section: utils
+Maintainer: Leon <Leon860516@gmail.com>
+Architecture: x86
+Installed-Size: 17296
+Filename: mpu6050_1_x86.ipk
+Size: 18054
+MD5Sum: bdb1c9cb70e8603a64b7d6315173f7ba
+SHA256sum: b391399196fe328223c61af835beab84475e77cd7b7bdc03cfe1c0edde56a80f
+Description:  a application to read data from MPU6050
+
