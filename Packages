@@ -23,11 +23,11 @@ LicenseFiles: LICENSE
 Section: utils
 Maintainer: Leon <Leon860516@gmail.com>
 Architecture: bcm53xx
-Installed-Size: 15452
+Installed-Size: 15449
 Filename: mpu6050_1_bcm53xx.ipk
-Size: 16153
-MD5Sum: 1330ff360ce417c7653e210dc4ade135
-SHA256sum: db384271cf4c612dbd176d2192dcb9efd32108b586e66c19ee02b1b118e6f0e8
+Size: 16144
+MD5Sum: 9bc18d60c7eacff6babf3c599cc5865e
+SHA256sum: 5ad251f596e21ef92460867047e2aa430d79cf89b1e64a1878b3f1967cd995df
 Description:  a application to read data from MPU6050
 
 Package: mpu6050
