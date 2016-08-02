@@ -20,14 +20,16 @@
 
 cd /tmp/
 
-git clone https://${USER}:${GH_Token}@github.com/${USER}/${REPO}.git --branch gh-pages \
+git clone https://${USER}:${TOKEN}@github.com/${USER}/${REPO}.git --branch gh-pages \
 --single-branch gh-pages > /dev/null 2>&1 || exit 1 # so that the key does not leak to the logs in case of errors
-cd gh-pages
+
+cd gh-pages || exit 1
+ls -a
 #git checkout --orphan gh-pages
 #git rm -fr .
 git config user.name "Travis CI"
 git config user.email "travis@noreply"
-git remote add origin https://${USER}:${GH_Token}@github.com/${USER}/${REPO}.git  > /dev/null 2>&1 || exit 1  # so that the key does not leak to the logs in case of errors
+git remote add origin https://${USER}:${TOKEN}@github.com/${USER}/${REPO}.git # > /dev/null 2>&1 || exit 1  # so that the key does not leak to the logs in case of errors
 cp $TRAVIS_BUILD_DIR/*ipk .
 $TRAVIS_BUILD_DIR/sdk/OpenWrt-SDK-*/scripts/ipkg-make-index.sh . > Packages
 gzip -c Packages > Packages.gz
