@@ -14,3 +14,19 @@ MD5Sum: 1330ff360ce417c7653e210dc4ade135
 SHA256sum: db384271cf4c612dbd176d2192dcb9efd32108b586e66c19ee02b1b118e6f0e8
 Description:  a application to read data from MPU6050
 
+Package: mpu6050
+Version: 1
+Depends: libc, libstdcpp
+Source: package/mpu6050
+License: GPLv2
+LicenseFiles: LICENSE
+Section: utils
+Maintainer: Leon <Leon860516@gmail.com>
+Architecture: ramips_24kec
+Installed-Size: 18588
+Filename: mpu6050_1_ramips_24kec.ipk
+Size: 19374
+MD5Sum: 589fa3be05766f8041ded7e82cf1628b
+SHA256sum: 47fe8fd342fdfb04b4afc821b2a5738fe8e177b97f88a91c92d23106bd447df0
+Description:  a application to read data from MPU6050
+
