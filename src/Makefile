@@ -3,7 +3,7 @@ CXX_OPTS= -Wall -g -O2
 
 INSTALL=install
 
-PROG=mstest
+PROG=mpu6050
 
 %.o: %.c                                                                         
 	$(CXX) $(CXXFLAGS) $(CXX_OPTS) $< -o $@ 
