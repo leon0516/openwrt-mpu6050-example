@@ -9,9 +9,9 @@ Maintainer: Leon <Leon860516@gmail.com>
 Architecture: ar71xx
 Installed-Size: 18614
 Filename: mpu6050_1_ar71xx.ipk
-Size: 19388
-MD5Sum: d9e817e7dc98b8c6f6ef68e96e19c627
-SHA256sum: 7c4da2ceb8f915ca4d6d309129481f1283e83d5243bc98b35c9e9e7283f7abea
+Size: 19384
+MD5Sum: 9f7c3f0ea4912d7ef525c83877d7c5a8
+SHA256sum: ca5b59a6c1a6a4dc83d9afa09d9d11ebe3e30458c499f90400613e34766fe439
 Description:  a application to read data from MPU6050
 
 Package: mpu6050
