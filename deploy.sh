@@ -20,12 +20,11 @@
 
 cd /tmp/
 
-git clone https://${USER}:${GH_Token}@github.com/${USER}/${REPO}.git
-# --branch gh-pages \
-#--single-branch gh-pages > /dev/null 2>&1 || exit 1 # so that the key does not leak to the logs in case of errors
-cd ${REPO}
-git checkout --orphan gh-pages
-git rm -fr .
+git clone https://${USER}:${GH_Token}@github.com/${USER}/${REPO}.git --branch gh-pages \
+--single-branch gh-pages > /dev/null 2>&1 || exit 1 # so that the key does not leak to the logs in case of errors
+#cd ${REPO}
+#git checkout --orphan gh-pages
+#git rm -fr .
 git config user.name "Travis CI"
 git config user.email "travis@noreply"
 git remote add origin https://${USER}:${GH_Token}@github.com/${USER}/${REPO}.git
